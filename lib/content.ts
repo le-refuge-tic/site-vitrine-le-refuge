@@ -16,7 +16,13 @@ export const company = {
   // Format international sans espaces ni « + » pour l'URL wa.me.
   whatsapp: { display: "+229 97 31 39 91", intl: "22997313991" },
   address:
-    "En quittant le carrefour Kpota pour le carrefour Aïchédji, prendre à droite ; au troisième rond-point, à 400 m, dans la rue, 2ème bureau à droite.",
+    "Abomey-Calavi, Calavi Kpota, en face de l'église des Témoins de Jéhovah (côté opposé). Locaux d'ADL Services, en co-working.",
+  mapsUrl: "https://maps.app.goo.gl/TJdJXtm8y7vbr2LeA",
+  // Horaires d'ouverture.
+  hours: [
+    { days: "Lundi – Vendredi", time: "8h00 – 18h00" },
+    { days: "Samedi", time: "9h00 – 15h00" },
+  ],
   country: "Bénin",
 } as const;
 

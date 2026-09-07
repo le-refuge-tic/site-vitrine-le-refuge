@@ -2,6 +2,7 @@ import {
   EnvelopeSimple,
   Phone,
   MapPin,
+  Clock,
   WhatsappLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
@@ -94,6 +95,36 @@ export function Contact() {
                   <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
                     {company.address}
                   </p>
+                  <a
+                    href={company.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-block text-sm font-medium text-cyan-600 transition-colors hover:text-cyan-700"
+                  >
+                    Voir sur Google Maps
+                  </a>
+                </div>
+              </li>
+
+              <li className="flex items-start gap-3.5">
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600">
+                  <Clock size={20} weight="duotone" />
+                </span>
+                <div>
+                  <p className="text-sm font-medium text-ink">
+                    Heures d&apos;ouverture
+                  </p>
+                  <ul className="mt-0.5 space-y-0.5">
+                    {company.hours.map((slot) => (
+                      <li
+                        key={slot.days}
+                        className="text-sm leading-relaxed text-ink-soft"
+                      >
+                        <span className="text-ink">{slot.days}</span> :{" "}
+                        {slot.time}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </li>
             </ul>

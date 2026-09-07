@@ -74,7 +74,14 @@ export function Footer() {
             ))}
             <li className="flex items-start gap-2.5">
               <MapPin size={18} className="mt-0.5 shrink-0 text-cyan-500" />
-              <span className="leading-relaxed">{company.address}</span>
+              <a
+                href={company.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="leading-relaxed transition-colors hover:text-cyan-600"
+              >
+                {company.address}
+              </a>
             </li>
           </ul>
         </div>
