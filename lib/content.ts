@@ -14,7 +14,7 @@ export const company = {
   phones: ["+229 01 93 46 37 16", "+229 01 97 31 39 91"],
   // Numéro WhatsApp (canal de discussion / demande de devis).
   // Format international sans espaces ni « + » pour l'URL wa.me.
-  whatsapp: { display: "+229 01 97 31 39 91", intl: "229019731391" },
+  whatsapp: { display: "+229 97 31 39 91", intl: "22997313991" },
   address:
     "En quittant le carrefour Kpota pour le carrefour Aïchédji, prendre à droite ; au troisième rond-point, à 400 m, dans la rue, 2ème bureau à droite.",
   country: "Bénin",
