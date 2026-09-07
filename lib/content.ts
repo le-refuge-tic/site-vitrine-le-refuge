@@ -11,10 +11,10 @@ export const company = {
   subtitle:
     "De la création de sites web et d'applications mobiles à la formation, l'immobilier et la communication — LE REFUGE TIC réunit vos besoins en un seul interlocuteur.",
   email: "contact@lerefugetic.com",
-  phones: ["+229 01 96 76 60 49", "+229 01 97 31 39 91"],
+  phones: ["+229 01 93 46 37 16", "+229 01 97 31 39 91"],
   // Numéro WhatsApp (canal de discussion / demande de devis).
   // Format international sans espaces ni « + » pour l'URL wa.me.
-  whatsapp: { display: "+229 96 76 60 49", intl: "22996766049" },
+  whatsapp: { display: "+229 01 97 31 39 91", intl: "229019731391" },
   address:
     "En quittant le carrefour Kpota pour le carrefour Aïchédji, prendre à droite ; au troisième rond-point, à 400 m, dans la rue, 2ème bureau à droite.",
   country: "Bénin",
@@ -154,7 +154,7 @@ export const legal = {
   companyName: "LE REFUGE TIC",
   legalForm: "Établissement" as string | null, // entreprise individuelle (RCCM)
   rccm: "COTONOU N° RCCM RB/ABC/22 A 48057" as string | null,
-  ifu: null as string | null, // Identifiant Fiscal Unique — à compléter
+  ifu: "0202271165781" as string | null,
   capital: null as string | null, // non applicable (entreprise individuelle)
   headOffice: company.address, // siège social
   publicationDirector:
