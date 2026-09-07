@@ -3,6 +3,7 @@ import { Outfit, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -71,6 +72,7 @@ export default function RootLayout({
           Aller au contenu
         </a>
         {children}
+        <ScrollToTop />
         <WhatsAppButton />
         <CookieBanner />
       </body>
