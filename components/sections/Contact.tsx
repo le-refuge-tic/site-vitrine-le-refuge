@@ -1,9 +1,15 @@
-import { EnvelopeSimple, Phone, MapPin } from "@phosphor-icons/react/dist/ssr";
+import {
+  EnvelopeSimple,
+  Phone,
+  MapPin,
+  WhatsappLogo,
+} from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Reveal } from "@/components/motion/Reveal";
+import { ButtonLink } from "@/components/ui/Button";
 import { ContactForm } from "./ContactForm";
-import { company } from "@/lib/content";
+import { company, whatsappUrl } from "@/lib/content";
 
 export function Contact() {
   return (
@@ -64,6 +70,23 @@ export function Contact() {
 
               <li className="flex items-start gap-3.5">
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600">
+                  <WhatsappLogo size={20} weight="duotone" />
+                </span>
+                <div>
+                  <p className="text-sm font-medium text-ink">WhatsApp</p>
+                  <a
+                    href={whatsappUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-ink-soft transition-colors hover:text-cyan-600"
+                  >
+                    {company.whatsapp.display}
+                  </a>
+                </div>
+              </li>
+
+              <li className="flex items-start gap-3.5">
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600">
                   <MapPin size={20} weight="duotone" />
                 </span>
                 <div>
@@ -74,6 +97,24 @@ export function Contact() {
                 </div>
               </li>
             </ul>
+
+            <div className="mt-8 rounded-2xl border border-line bg-canvas/60 p-5">
+              <p className="text-sm font-medium text-ink">
+                Besoin d&apos;un devis rapide ?
+              </p>
+              <p className="mt-1 text-sm text-ink-soft">
+                Échangeons directement sur WhatsApp.
+              </p>
+              <ButtonLink
+                href={whatsappUrl()}
+                external
+                variant="whatsapp"
+                className="mt-4"
+              >
+                <WhatsappLogo size={18} weight="fill" />
+                Demander un devis
+              </ButtonLink>
+            </div>
           </Reveal>
         </div>
 

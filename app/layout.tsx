@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { CookieBanner } from "@/components/layout/CookieBanner";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -70,6 +71,7 @@ export default function RootLayout({
           Aller au contenu
         </a>
         {children}
+        <WhatsAppButton />
         <CookieBanner />
       </body>
     </html>

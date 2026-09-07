@@ -124,10 +124,10 @@ export default function MentionsLegalesPage() {
         <H2>Responsabilité</H2>
         <p className="mt-3">
           {legal.companyName} met tout en œuvre pour fournir des informations
-          exactes et à jour, sans pouvoir garantir l&apos;absence totale
-          d&apos;erreurs ou d&apos;omissions. L&apos;utilisation des
-          informations présentes sur ce site se fait sous la responsabilité de
-          l&apos;utilisateur.
+          exactes et à jour sur ce site. Toutefois, elle ne saurait garantir
+          l&apos;absence totale d&apos;erreurs ou d&apos;omissions. En
+          conséquence, l&apos;utilisation des informations et contenus
+          disponibles se fait sous la seule responsabilité de l&apos;utilisateur.
         </p>
       </section>
 
@@ -137,6 +137,15 @@ export default function MentionsLegalesPage() {
           Les présentes mentions légales sont régies par le droit béninois. Tout
           litige relatif à l&apos;utilisation du site relève de la compétence
           des juridictions béninoises.
+        </p>
+      </section>
+
+      <section>
+        <H2>Modifications</H2>
+        <p className="mt-3">
+          {legal.companyName} se réserve le droit de modifier ces mentions
+          légales à tout moment. En cas de changement, la date de mise à jour
+          indiquée en haut de la page est actualisée.
         </p>
       </section>
     </LegalPage>

@@ -119,6 +119,15 @@ export default function ConfidentialitePage() {
           .
         </p>
       </section>
+
+      <section>
+        <H2>Modifications de cette politique</H2>
+        <p className="mt-3">
+          Nous nous réservons le droit de modifier cette politique à tout
+          moment. En cas de changement, la date de mise à jour indiquée en haut
+          de la page est actualisée.
+        </p>
+      </section>
     </LegalPage>
   );
 }

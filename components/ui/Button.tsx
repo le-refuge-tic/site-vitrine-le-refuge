@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "outline" | "ghost";
+type Variant = "primary" | "outline" | "ghost" | "whatsapp";
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[transform,background-color,box-shadow,color] duration-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60";
@@ -17,6 +17,8 @@ const variants: Record<Variant, string> = {
   outline:
     "border border-line bg-surface text-ink hover:border-cyan-300 hover:text-cyan-600",
   ghost: "text-ink-soft hover:bg-cyan-50 hover:text-cyan-600",
+  whatsapp:
+    "bg-[#25D366] text-white shadow-soft hover:bg-[#1eb858] hover:shadow-lift",
 };
 
 type CommonProps = {

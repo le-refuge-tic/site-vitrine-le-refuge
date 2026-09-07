@@ -12,10 +12,20 @@ export const company = {
     "De la création de sites web et d'applications mobiles à la formation, l'immobilier et la communication — LE REFUGE TIC réunit vos besoins en un seul interlocuteur.",
   email: "contact@lerefugetic.com",
   phones: ["+229 01 96 76 60 49", "+229 01 97 31 39 91"],
+  // Numéro WhatsApp (canal de discussion / demande de devis).
+  // Format international sans espaces ni « + » pour l'URL wa.me.
+  whatsapp: { display: "+229 96 76 60 49", intl: "22996766049" },
   address:
     "En quittant le carrefour Kpota pour le carrefour Aïchédji, prendre à droite ; au troisième rond-point, à 400 m, dans la rue, 2ème bureau à droite.",
   country: "Bénin",
 } as const;
+
+/** Construit un lien wa.me avec un message de demande de devis pré-rempli. */
+export function whatsappUrl(
+  message = "Bonjour LE REFUGE TIC, je souhaite demander un devis.",
+): string {
+  return `https://wa.me/${company.whatsapp.intl}?text=${encodeURIComponent(message)}`;
+}
 
 export type NavLink = { label: string; href: string };
 
@@ -165,6 +175,10 @@ export const legal = {
 
   // Référence du cadre légal applicable
   lawReference: "Loi n° 2017-20 du 20 avril 2018 portant Code du numérique en République du Bénin",
+
+  // Date de dernière mise à jour des pages légales (à actualiser à chaque
+  // modification). Affichée en haut des mentions, confidentialité et cookies.
+  lastUpdated: "6 septembre 2026",
 } as const;
 
 /**

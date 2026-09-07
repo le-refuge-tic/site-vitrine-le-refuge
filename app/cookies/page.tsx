@@ -71,6 +71,15 @@ export default function CookiesPage() {
           confidentialité.
         </p>
       </section>
+
+      <section>
+        <H2>Modifications</H2>
+        <p className="mt-3">
+          Cette politique peut être modifiée à tout moment, notamment lors de
+          l&apos;ajout de nouveaux outils. La date de mise à jour indiquée en
+          haut de la page est alors actualisée.
+        </p>
+      </section>
     </LegalPage>
   );
 }
