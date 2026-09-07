@@ -1,13 +1,8 @@
 import Link from "next/link";
-import {
-  EnvelopeSimple,
-  Phone,
-  MapPin,
-  WhatsappLogo,
-} from "@phosphor-icons/react/dist/ssr";
+import { EnvelopeSimple, Phone, MapPin } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
-import { company, navLinks, serviceGroups, whatsappUrl } from "@/lib/content";
+import { company, navLinks, serviceGroups } from "@/lib/content";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -20,15 +15,6 @@ export function Footer() {
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-soft">
             {company.tagline}
           </p>
-          <a
-            href={whatsappUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-sm font-medium text-white transition-transform hover:scale-105 active:scale-95"
-          >
-            <WhatsappLogo size={18} weight="fill" />
-            Demander un devis
-          </a>
         </div>
 
         <nav aria-label="Navigation">
@@ -86,17 +72,6 @@ export function Footer() {
                 </a>
               </li>
             ))}
-            <li className="flex items-start gap-2.5">
-              <WhatsappLogo size={18} className="mt-0.5 shrink-0 text-cyan-500" />
-              <a
-                href={whatsappUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-cyan-600"
-              >
-                {company.whatsapp.display}
-              </a>
-            </li>
             <li className="flex items-start gap-2.5">
               <MapPin size={18} className="mt-0.5 shrink-0 text-cyan-500" />
               <span className="leading-relaxed">{company.address}</span>
