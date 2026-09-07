@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { List, X } from "@phosphor-icons/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import { ButtonLink } from "@/components/ui/Button";
@@ -39,6 +40,22 @@ export function Header() {
     return () => observer.disconnect();
   }, []);
 
+  // Empêche le scroll du body quand le drawer est ouvert
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // Ferme le drawer avec la touche Échap
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <header
       className={cn(
@@ -48,7 +65,7 @@ export function Header() {
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <Container className="flex h-16 items-center justify-between sm:h-[4.5rem]">
+      <Container className="flex h-20 items-center justify-between sm:h-24">
         <a href="#accueil" aria-label="Accueil — LE REFUGE TIC">
           <Logo />
         </a>
@@ -66,9 +83,7 @@ export function Header() {
                 aria-current={isActive ? "true" : undefined}
                 className={cn(
                   "rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200",
-                  isActive
-                    ? "text-cyan-600"
-                    : "text-ink-soft hover:text-ink",
+                  isActive ? "text-cyan-600" : "text-ink-soft hover:text-ink",
                 )}
               >
                 {link.label}
@@ -85,39 +100,95 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink md:hidden"
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-cyan-50 md:hidden"
+          aria-label="Ouvrir le menu"
           aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+          aria-controls="mobile-drawer"
+          onClick={() => setOpen(true)}
         >
-          {open ? <X size={22} /> : <List size={22} />}
+          <List size={24} />
         </button>
       </Container>
 
-      {/* Menu mobile */}
-      {open && (
-        <div className="border-t border-line bg-surface md:hidden">
-          <Container className="flex flex-col gap-1 py-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-[0.95rem] font-medium text-ink-soft hover:bg-cyan-50 hover:text-cyan-600"
-              >
-                {link.label}
-              </a>
-            ))}
-            <ButtonLink
-              href="#contact"
-              className="mt-2"
+      {/* Menu mobile latéral (drawer) */}
+      <AnimatePresence>
+        {open && (
+          <div className="md:hidden">
+            {/* Voile */}
+            <motion.button
+              type="button"
+              aria-label="Fermer le menu"
+              className="fixed inset-0 z-40 bg-navy-900/40 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
+            />
+
+            {/* Panneau latéral droit */}
+            <motion.div
+              id="mobile-drawer"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu de navigation"
+              className="fixed right-0 top-0 z-50 flex h-dvh w-[82%] max-w-xs flex-col bg-surface shadow-lift"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             >
-              Nous contacter
-            </ButtonLink>
-          </Container>
-        </div>
-      )}
+              <div className="flex items-center justify-between border-b border-line px-5 py-4">
+                <Logo showWordmark={false} />
+                <button
+                  type="button"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-cyan-50"
+                  aria-label="Fermer le menu"
+                  onClick={() => setOpen(false)}
+                >
+                  <X size={22} />
+                </button>
+              </div>
+
+              <nav
+                aria-label="Navigation mobile"
+                className="flex flex-1 flex-col gap-1 p-5"
+              >
+                {navLinks.map((link) => {
+                  const isActive = active === link.href.replace("#", "");
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={isActive ? "true" : undefined}
+                      className={cn(
+                        "rounded-xl px-4 py-3 text-base font-medium transition-colors",
+                        isActive
+                          ? "bg-cyan-50 text-cyan-600"
+                          : "text-ink-soft hover:bg-cyan-50 hover:text-cyan-600",
+                      )}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                })}
+              </nav>
+
+              <div className="border-t border-line p-5">
+                <ButtonLink
+                  href="#contact"
+                  size="lg"
+                  className="w-full"
+                  onClick={() => setOpen(false)}
+                >
+                  Nous contacter
+                </ButtonLink>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

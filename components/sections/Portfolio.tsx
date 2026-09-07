@@ -1,39 +1,86 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Reveal } from "@/components/motion/Reveal";
 import { projects, type Project } from "@/lib/content";
 
-/** Aperçu live du site via iframe mis à l'échelle, avec fallback si le chargement échoue. */
+/** Largeur virtuelle à laquelle l'iframe est rendue avant mise à l'échelle. */
+const BASE_WIDTH = 1280;
+
+/**
+ * Aperçu live du site via iframe mis à l'échelle dynamiquement selon la
+ * largeur du conteneur (responsive), avec fallback si le chargement échoue.
+ */
 function LivePreview({ project }: { project: Project }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [scale, setScale] = useState(0.42);
+
+  // Suit la largeur du conteneur pour l'échelle responsive.
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setScale(el.clientWidth / BASE_WIDTH);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // Ne monte l'iframe que lorsqu'elle entre dans le viewport.
+  // Évite qu'un champ auto-focus du site distant (ex. login) fasse défiler
+  // la page vitrine vers le bas au chargement.
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Le ratio 16/10 fixe la hauteur ; on rend l'iframe à la même proportion.
+  const baseHeight = Math.round((BASE_WIDTH * 10) / 16);
 
   return (
-    <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl border-b border-line bg-cyan-50">
+    <div
+      ref={containerRef}
+      className="relative aspect-[16/10] w-full overflow-hidden rounded-t-2xl border-b border-line bg-cyan-50"
+    >
       {!failed ? (
         <>
           {!loaded && (
             <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-cyan-50 to-cyan-100" />
           )}
-          {/* iframe rendu à 1280px puis réduit pour un aperçu net */}
-          <iframe
-            src={project.url}
-            title={`Aperçu de ${project.title}`}
-            loading="lazy"
-            tabIndex={-1}
-            onLoad={() => setLoaded(true)}
-            onError={() => setFailed(true)}
-            className="pointer-events-none absolute left-0 top-0 origin-top-left"
-            style={{
-              width: "1280px",
-              height: "800px",
-              transform: "scale(0.42)",
-            }}
-          />
+          {visible && (
+            <iframe
+              src={project.url}
+              title={`Aperçu de ${project.title}`}
+              loading="lazy"
+              tabIndex={-1}
+              aria-hidden="true"
+              onLoad={() => setLoaded(true)}
+              onError={() => setFailed(true)}
+              className="pointer-events-none absolute left-0 top-0 origin-top-left"
+              style={{
+                width: `${BASE_WIDTH}px`,
+                height: `${baseHeight}px`,
+                transform: `scale(${scale})`,
+              }}
+            />
+          )}
         </>
       ) : (
         <div className="flex h-full items-center justify-center bg-gradient-to-br from-cyan-100 to-navy-600/10 text-sm text-ink-muted">

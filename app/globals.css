@@ -51,7 +51,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem; /* compense le header sticky pour les ancres */
+  scroll-padding-top: 7rem; /* compense le header sticky pour les ancres */
 }
 
 body {

@@ -11,7 +11,7 @@ export const company = {
   subtitle:
     "De la création de sites web et d'applications mobiles à la formation, l'immobilier et la communication — LE REFUGE TIC réunit vos besoins en un seul interlocuteur.",
   email: "contact@lerefugetic.com",
-  phones: ["+229 96 76 60 49", "+229 01 97 31 39 91"],
+  phones: ["+229 01 96 76 60 49", "+229 01 97 31 39 91"],
   address:
     "En quittant le carrefour Kpota pour le carrefour Aïchédji, prendre à droite ; au troisième rond-point, à 400 m, dans la rue, 2ème bureau à droite.",
   country: "Bénin",
