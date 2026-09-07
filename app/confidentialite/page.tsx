@@ -36,9 +36,9 @@ export default function ConfidentialitePage() {
       <section>
         <H2>Finalités</H2>
         <p className="mt-3">
-          Ces données sont utilisées uniquement pour traiter votre demande et
-          vous répondre. Elles ne sont ni revendues, ni utilisées à des fins
-          publicitaires.
+          Ces données sont utilisées uniquement pour traiter votre demande, vous
+          répondre, et le cas échéant vous adresser un devis. Elles ne sont ni
+          revendues, ni utilisées à des fins publicitaires.
         </p>
       </section>
 

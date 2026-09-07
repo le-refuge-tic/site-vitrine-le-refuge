@@ -119,6 +119,26 @@ export default function MentionsLegalesPage() {
           reproduction sans autorisation préalable est interdite.
         </p>
       </section>
+
+      <section>
+        <H2>Responsabilité</H2>
+        <p className="mt-3">
+          {legal.companyName} met tout en œuvre pour fournir des informations
+          exactes et à jour, sans pouvoir garantir l&apos;absence totale
+          d&apos;erreurs ou d&apos;omissions. L&apos;utilisation des
+          informations présentes sur ce site se fait sous la responsabilité de
+          l&apos;utilisateur.
+        </p>
+      </section>
+
+      <section>
+        <H2>Droit applicable</H2>
+        <p className="mt-3">
+          Les présentes mentions légales sont régies par le droit béninois. Tout
+          litige relatif à l&apos;utilisation du site relève de la compétence
+          des juridictions béninoises.
+        </p>
+      </section>
     </LegalPage>
   );
 }
