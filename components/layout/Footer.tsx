@@ -82,6 +82,12 @@ export function Footer() {
             >
               Confidentialité
             </Link>
+            <Link
+              href="/cookies"
+              className="transition-colors hover:text-cyan-600"
+            >
+              Cookies
+            </Link>
           </div>
         </Container>
       </div>

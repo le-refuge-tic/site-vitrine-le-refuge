@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/layout/LegalPage";
-import { company } from "@/lib/content";
+import { company, legal } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
   description: `Mentions légales de ${company.name}.`,
 };
 
-function Placeholder({ label }: { label: string }) {
+/** Affiche une valeur légale, ou un marqueur « à compléter » si absente. */
+function Field({ value, label }: { value: string | null; label: string }) {
+  if (value) return <>{value}</>;
   return (
     <span className="rounded bg-cyan-50 px-1.5 py-0.5 text-sm font-medium text-cyan-700">
       [{label} — à compléter]
@@ -15,57 +17,108 @@ function Placeholder({ label }: { label: string }) {
   );
 }
 
+function H2({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="font-display text-xl font-semibold text-ink">{children}</h2>
+  );
+}
+
 export default function MentionsLegalesPage() {
   return (
     <LegalPage title="Mentions légales">
       <p>
-        Ce contenu doit être complété avec les informations officielles de{" "}
-        {company.name}.
+        Conformément à la {legal.lawReference}, les informations suivantes sont
+        portées à la connaissance des utilisateurs du site.
       </p>
 
       <section>
-        <h2 className="font-display text-xl font-semibold text-ink">Éditeur</h2>
+        <H2>Éditeur du site</H2>
         <ul className="mt-3 space-y-1.5">
-          <li>Raison sociale : {company.name}</li>
+          <li>Dénomination sociale : {legal.companyName}</li>
           <li>
-            Forme juridique : <Placeholder label="forme juridique" />
+            Forme juridique :{" "}
+            <Field value={legal.legalForm} label="forme juridique" />
           </li>
           <li>
-            Numéro d&apos;identification (IFU / RCCM) :{" "}
-            <Placeholder label="identifiant" />
+            Siège social : {legal.headOffice}, {company.country}
           </li>
-          <li>Adresse : {company.address}</li>
-          <li>Email : {company.email}</li>
+          <li>
+            Capital social : <Field value={legal.capital} label="capital social" />
+          </li>
+          <li>
+            Immatriculation (RCCM) : <Field value={legal.rccm} label="n° RCCM" />
+          </li>
+          <li>
+            Identifiant Fiscal Unique (IFU) :{" "}
+            <Field value={legal.ifu} label="IFU" />
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <H2>Contact</H2>
+        <ul className="mt-3 space-y-1.5">
+          <li>
+            Email :{" "}
+            <a
+              href={`mailto:${company.email}`}
+              className="font-medium text-cyan-600 hover:underline"
+            >
+              {company.email}
+            </a>
+          </li>
           <li>Téléphone : {company.phones.join(" · ")}</li>
         </ul>
       </section>
 
       <section>
-        <h2 className="font-display text-xl font-semibold text-ink">
-          Directeur de la publication
-        </h2>
+        <H2>Directeur de la publication</H2>
         <p className="mt-3">
-          <Placeholder label="nom du responsable" />
+          <Field
+            value={legal.publicationDirector}
+            label="nom du directeur de la publication"
+          />
         </p>
       </section>
 
       <section>
-        <h2 className="font-display text-xl font-semibold text-ink">
-          Hébergement
-        </h2>
+        <H2>Hébergement</H2>
         <p className="mt-3">
-          <Placeholder label="hébergeur, adresse, contact" />
+          Le site est hébergé par {legal.host.name}, {legal.host.address}.{" "}
+          <a
+            href={legal.host.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-cyan-600 hover:underline"
+          >
+            {legal.host.website}
+          </a>
         </p>
       </section>
 
       <section>
-        <h2 className="font-display text-xl font-semibold text-ink">
-          Propriété intellectuelle
-        </h2>
+        <H2>Protection des données personnelles</H2>
         <p className="mt-3">
-          L&apos;ensemble des contenus de ce site est la propriété de{" "}
-          {company.name}, sauf mention contraire. Toute reproduction sans
-          autorisation est interdite.
+          Le traitement des données personnelles collectées via ce site est
+          soumis à la {legal.lawReference} et au contrôle de l&apos;
+          {legal.apdp.name}. Les modalités de collecte et vos droits sont
+          détaillés dans notre{" "}
+          <a
+            href="/confidentialite"
+            className="font-medium text-cyan-600 hover:underline"
+          >
+            politique de confidentialité
+          </a>
+          .
+        </p>
+      </section>
+
+      <section>
+        <H2>Propriété intellectuelle</H2>
+        <p className="mt-3">
+          L&apos;ensemble des contenus de ce site (textes, visuels, logo) est la
+          propriété de {legal.companyName}, sauf mention contraire. Toute
+          reproduction sans autorisation préalable est interdite.
         </p>
       </section>
     </LegalPage>

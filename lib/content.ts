@@ -135,8 +135,41 @@ export const aboutPoints: { title: string; body: string }[] = [
   },
 ];
 
+/**
+ * Données légales. Les champs `null` sont à compléter par le client
+ * (aucune valeur inventée). Ils s'affichent comme « [À COMPLÉTER] ».
+ */
 export const legal = {
+  // --- Éditeur ---
   companyName: "LE REFUGE TIC",
-  // Contenu juridique à compléter par le client
-  placeholder: "[À COMPLÉTER]",
+  legalForm: null as string | null, // ex. « SARL », « Établissement », « SAS »
+  rccm: null as string | null, // n° d'immatriculation au RCCM
+  ifu: null as string | null, // Identifiant Fiscal Unique
+  capital: null as string | null, // capital social
+  headOffice: company.address, // siège social
+  publicationDirector: null as string | null, // directeur de la publication
+
+  // --- Hébergeur ---
+  host: {
+    name: "Vercel Inc.",
+    address: "440 N Barranca Ave #4133, Covina, CA 91723, États-Unis",
+    website: "https://vercel.com",
+  },
+
+  // --- Autorité de protection des données (Bénin) ---
+  apdp: {
+    name: "Autorité de Protection des Données Personnelles (APDP)",
+    website: "https://apdp.bj",
+  },
+
+  // Référence du cadre légal applicable
+  lawReference: "Loi n° 2017-20 du 20 avril 2018 portant Code du numérique en République du Bénin",
 } as const;
+
+/**
+ * Bandeau cookies. Désactivé tant qu'aucun cookie non essentiel
+ * (mesure d'audience, marketing) n'est déposé : conformément au principe
+ * « aucun dépôt avant consentement », il ne sert à rien de l'afficher.
+ * Passer à `true` le jour où un outil de suivi (ex. Analytics) est ajouté.
+ */
+export const COOKIE_BANNER_ENABLED = false;
