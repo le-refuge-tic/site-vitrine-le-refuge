@@ -16,7 +16,7 @@ export const company = {
   // Format international sans espaces ni « + » pour l'URL wa.me.
   whatsapp: { display: "+229 97 31 39 91", intl: "22997313991" },
   address:
-    "Abomey-Calavi, Calavi Kpota, en face de l'église des Témoins de Jéhovah (côté opposé). Locaux d'ADL ÉNERGIE SERVICES (Deuxième bureau à droite).",
+    "Abomey-Calavi, Calavi Kpota, en face de l'église des Témoins de Jéhovah (côté opposé). Locaux de ADL ÉNERGIE SERVICES (Deuxième bureau à droite).",
   mapsUrl: "https://maps.app.goo.gl/TJdJXtm8y7vbr2LeA",
   // Horaires d'ouverture.
   hours: [
