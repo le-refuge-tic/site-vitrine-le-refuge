@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Site vitrine — LE REFUGE TIC
 
-## Getting Started
+Site vitrine officiel de **LE REFUGE TIC**, entreprise TIC basée au Bénin :
+développement web & mobile, design UI/UX, communication, ingénierie informatique,
+formations, immobilier, commerce et services.
 
-First, run the development server:
+## Stack
+
+- [Next.js 16](https://nextjs.org/) (App Router) + TypeScript
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/) — animations
+- [Phosphor Icons](https://phosphoricons.com/)
+
+## Développement
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Autres scripts :
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build    # build de production
+npm run start    # serveur de production
+npm run lint     # ESLint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure
 
-## Learn More
+```
+app/                     # routes (App Router)
+  page.tsx               # page d'accueil (assemble les sections)
+  mentions-legales/      # page légale
+  confidentialite/       # politique de confidentialité
+  not-found.tsx          # page 404
+components/
+  layout/                # Header, Footer, gabarit des pages légales
+  sections/              # Hero, Services, Portfolio, About, Contact
+  ui/                    # Container, Button, SectionTitle, Logo
+  motion/                # Reveal (wrapper d'animation au scroll)
+lib/
+  content.ts             # SOURCE UNIQUE des données (services, contact, projets)
+  cn.ts                  # utilitaire de concaténation de classes
+public/                  # logo et assets statiques
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Contenu
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Toutes les données réelles (services, coordonnées, réalisations) sont centralisées
+dans [`lib/content.ts`](lib/content.ts). C'est le seul fichier à éditer pour mettre
+à jour le contenu du site.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### À compléter
 
-## Deploy on Vercel
+Certaines informations juridiques restent à renseigner (marquées `[À COMPLÉTER]`) :
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Mentions légales** : forme juridique, IFU/RCCM, directeur de la publication, hébergeur
+- **Confidentialité** : outils de mesure d'audience éventuels
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Déploiement
+
+Prévu sur [Vercel](https://vercel.com/) (comme les autres projets REFUGE).

@@ -1,26 +1,113 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/*  LE REFUGE TIC — Design tokens                                       */
+/*  Palette dérivée du logo REFUGE (cyan + navy)                        */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  /* Fonts (injectées via next/font dans layout.tsx) */
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-outfit), var(--font-inter-tight), sans-serif;
+
+  /* Neutres — famille froide unique, teintée navy */
+  --color-canvas: #f6f9fc;
+  --color-surface: #ffffff;
+  --color-ink: #0f1b3d;
+  --color-ink-soft: #3a4a6b;
+  --color-ink-muted: #6b7897;
+  --color-line: #e3eaf3;
+
+  /* Accent unique : cyan REFUGE */
+  --color-cyan-50: #eef9ff;
+  --color-cyan-100: #d7f0ff;
+  --color-cyan-300: #6fcdf5;
+  --color-cyan-400: #35b6ee;
+  --color-cyan-500: #12a5e5;
+  --color-cyan-600: #0a86c4;
+
+  /* Navy — profondeur */
+  --color-navy-500: #2a4a9c;
+  --color-navy-600: #1e3a8a;
+  --color-navy-700: #172d6e;
+  --color-navy-900: #0f1b3d;
+
+  /* Ombres teintées bleu (jamais du noir pur) */
+  --shadow-soft: 0 1px 2px rgba(15, 27, 61, 0.04),
+    0 8px 24px -12px rgba(18, 165, 229, 0.18);
+  --shadow-lift: 0 2px 4px rgba(15, 27, 61, 0.05),
+    0 18px 40px -18px rgba(18, 165, 229, 0.28);
+  --shadow-ring: 0 0 0 1px rgba(227, 234, 243, 0.9);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-canvas);
+  --foreground: var(--color-ink);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  border-color: var(--color-line);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem; /* compense le header sticky pour les ancres */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Titres display : présence, tracking serré */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Grain subtil pour casser le flat (overlay global, non-interactif) */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Focus ring accessible et cohérent sur tout le site */
+:focus-visible {
+  outline: 2px solid var(--color-cyan-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respecte la préférence de réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Utilitaire : dégradé de texte cyan → navy pour les mots-clés */
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-cyan-500) 0%,
+    var(--color-navy-600) 90%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Read(//d/Projet/**)",
-      "Bash(npx --yes create-next-app@latest site-vitrine-le-refuge --ts --tailwind --app --src-dir=false --import-alias \"@/*\" --eslint --no-turbopack --use-npm --skip-install)"
-    ]
-  }
-}
