@@ -142,12 +142,13 @@ export const aboutPoints: { title: string; body: string }[] = [
 export const legal = {
   // --- Éditeur ---
   companyName: "LE REFUGE TIC",
-  legalForm: null as string | null, // ex. « SARL », « Établissement », « SAS »
-  rccm: null as string | null, // n° d'immatriculation au RCCM
-  ifu: null as string | null, // Identifiant Fiscal Unique
-  capital: null as string | null, // capital social
+  legalForm: "Établissement" as string | null, // entreprise individuelle (RCCM)
+  rccm: "COTONOU N° RCCM RB/ABC/22 A 48057" as string | null,
+  ifu: null as string | null, // Identifiant Fiscal Unique — à compléter
+  capital: null as string | null, // non applicable (entreprise individuelle)
   headOffice: company.address, // siège social
-  publicationDirector: null as string | null, // directeur de la publication
+  publicationDirector:
+    "Sedjro Confort Bernard POSSY BERRY QUENUM" as string | null,
 
   // --- Hébergeur ---
   host: {

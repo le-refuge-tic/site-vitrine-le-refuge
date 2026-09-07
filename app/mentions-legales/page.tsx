@@ -42,9 +42,7 @@ export default function MentionsLegalesPage() {
           <li>
             Siège social : {legal.headOffice}, {company.country}
           </li>
-          <li>
-            Capital social : <Field value={legal.capital} label="capital social" />
-          </li>
+          {legal.capital && <li>Capital social : {legal.capital}</li>}
           <li>
             Immatriculation (RCCM) : <Field value={legal.rccm} label="n° RCCM" />
           </li>
