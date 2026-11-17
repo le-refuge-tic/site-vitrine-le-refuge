@@ -111,6 +111,12 @@ export function Footer() {
             >
               Cookies
             </Link>
+            <a
+              href="/refuge/confidentialite"
+              className="transition-colors hover:text-cyan-600"
+            >
+              Confidentialité REFUGE (application)
+            </a>
           </div>
         </Container>
       </div>

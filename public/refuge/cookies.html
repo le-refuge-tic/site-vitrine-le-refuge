@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cookies et traceurs – application web REFUGE</title>
+<meta name="description" content="Politique de gestion des cookies et traceurs de l'application web REFUGE (LE REFUGE TIC) : traceurs utilisés, finalités, durées et gestion de vos choix.">
+<style>
+  :root { --text:#1f2430; --muted:#5b6270; --line:#dde0e6; --bg:#ffffff; --soft:#f5f6f8; --accent:#1c3d8f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:var(--text); background:var(--bg); line-height:1.65; }
+  main { max-width: 860px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 1.9rem; line-height:1.25; margin: 0 0 6px; }
+  h2 { font-size: 1.25rem; margin: 36px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .meta { color: var(--muted); margin: 0 0 24px; }
+  a { color: var(--accent); }
+  table { width:100%; border-collapse: collapse; margin: 12px 0 8px; font-size: .95rem; }
+  th, td { text-align:left; vertical-align: top; padding: 10px 12px; border: 1px solid var(--line); }
+  th { background: var(--soft); font-weight: 600; }
+  .table-wrap { overflow-x:auto; }
+  .note { background: var(--soft); border-left: 3px solid var(--accent); padding: 10px 14px; margin: 14px 0; }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: .92em; }
+  @media (max-width: 640px) { h1 { font-size: 1.6rem; } }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Politique de gestion des cookies et traceurs</h1>
+<p class="meta">Application web REFUGE – éditée par LE REFUGE TIC · Dernière mise à jour : 17 novembre 2026</p>
+
+<h2>1. Objet de la présente politique</h2>
+<p>Cette politique explique comment l’application web REFUGE utilise les cookies et autres traceurs lors de votre navigation, à quelles fins, pendant combien de temps, et comment vous pouvez exprimer ou modifier vos choix.</p>
+<p>On appelle « traceur » toute information enregistrée sur votre appareil (ordinateur, téléphone, tablette) lors de la consultation d’un service en ligne, et relue ensuite par ce service. Les cookies en sont un exemple ; le stockage local du navigateur (<code>localStorage</code> et <code>sessionStorage</code>) en est un autre.</p>
+<p>Elle complète la <a href="/refuge/confidentialite">politique de confidentialité de REFUGE</a>, qui décrit l’ensemble des traitements de données personnelles. Pour l’application mobile Android, les données traitées sont décrites dans cette même politique de confidentialité.</p>
+
+<h2>2. Ce que REFUGE utilise</h2>
+<div class="table-wrap"><table>
+  <tr><th scope="row">Cookies publicitaires</th><td>Aucun</td></tr>
+  <tr><th scope="row">Cookies déposés par l’application</th><td>Aucun : l’application utilise uniquement le stockage local de votre navigateur</td></tr>
+  <tr><th scope="row">Traceurs nécessaires au fonctionnement</th><td>Oui : session, sécurité de connexion, mémorisation de votre choix (section 3)</td></tr>
+  <tr><th scope="row">Traceurs de préférences</th><td>Oui : thème d’affichage et choix faits à l’accueil (section 4)</td></tr>
+  <tr><th scope="row">Mesure d’audience</th><td>Umami Cloud, sans cookie, uniquement si vous l’acceptez (section 5)</td></tr>
+</table></div>
+
+<h2>3. Traceurs strictement nécessaires</h2>
+<p>Ces traceurs sont indispensables au fonctionnement de l’application et à la sécurité de votre compte. Ils ne nécessitent pas votre consentement et ne servent à aucune autre fin.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Nom</th><th>Finalité</th><th>Durée de conservation</th></tr></thead>
+  <tbody>
+  <tr><td><code>rg_token</code></td><td>Jeton d’accès à votre session</td><td>15 minutes, renouvelé pendant la session ; supprimé à la déconnexion</td></tr>
+  <tr><td><code>rg_refresh</code></td><td>Jeton de renouvellement de la session</td><td>Renouvelé à chaque utilisation ; supprimé et révoqué à la déconnexion</td></tr>
+  <tr><td><code>rg_device_token</code></td><td>Reconnaissance de votre appareil de confiance, pour ne pas redemander le code de vérification (OTP) à chaque connexion</td><td>30 jours ; révoqué en cas de changement de mot de passe ou de numéro de téléphone</td></tr>
+  <tr><td><code>rg_user</code></td><td>Informations minimales d’affichage : identifiant, prénom, nom, rôle(s), photo de profil. Vos coordonnées (téléphone, e-mail) ne sont pas enregistrées sur l’appareil.</td><td>Jusqu’à la déconnexion</td></tr>
+  <tr><td><code>rg_active_role</code></td><td>Rôle actif choisi dans l’application</td><td>Jusqu’à la déconnexion</td></tr>
+  <tr><td><code>post_login_redirect</code></td><td>Page à rouvrir après la connexion</td><td>Jusqu’à la fermeture de l’onglet</td></tr>
+  <tr><td><code>rg_consent</code></td><td>Mémorisation de votre choix concernant la mesure d’audience</td><td>6 mois</td></tr>
+  </tbody>
+</table></div>
+
+<h2>4. Traceurs de préférences</h2>
+<p>Ces traceurs mémorisent des choix que vous faites vous-même dans l’application, afin de vous éviter de les refaire à chaque visite. Ils restent sur votre appareil et ne sont transmis à aucun tiers.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Nom</th><th>Finalité</th><th>Durée de conservation</th></tr></thead>
+  <tbody>
+  <tr><td><code>rg_theme</code></td><td>Thème d’affichage choisi (clair, sombre ou réglage de l’appareil)</td><td>Jusqu’à l’effacement des données du navigateur</td></tr>
+  <tr><td><code>rg_onboarded</code></td><td>Indique que le parcours d’accueil a déjà été vu</td><td>Jusqu’à l’effacement des données du navigateur</td></tr>
+  <tr><td><code>rg_ville</code>, <code>rg_quartier</code></td><td>Ville et quartier indiqués à l’accueil, pour préremplir la recherche</td><td>Jusqu’à l’effacement des données du navigateur</td></tr>
+  <tr><td><code>rg_objectif</code>, <code>rg_role_suggere</code></td><td>Objectif indiqué à l’accueil et rôle suggéré à l’inscription</td><td>Jusqu’à l’effacement des données du navigateur</td></tr>
+  <tr><td><code>rg_push_dismissed</code></td><td>Mémorise que vous avez refusé l’invitation aux notifications</td><td>Jusqu’à l’effacement des données du navigateur</td></tr>
+  </tbody>
+</table></div>
+
+<h2>5. Mesure d’audience</h2>
+<p>Avec votre accord, REFUGE mesure la fréquentation de l’application web à l’aide du service <strong>Umami Cloud</strong> (Umami Software, Inc.), afin d’en comprendre l’usage et de l’améliorer.</p>
+<ul>
+  <li><strong>Sans cookie :</strong> Umami ne dépose aucun cookie sur votre appareil.</li>
+  <li><strong>Uniquement avec votre consentement :</strong> le service n’est chargé qu’après que vous avez cliqué sur « Accepter ».</li>
+  <li><strong>Respect du réglage « Ne pas suivre » :</strong> si votre navigateur l’active, aucune mesure n’est effectuée.</li>
+  <li><strong>Sans donnée d’identification :</strong> les événements mesurés (recherche, consultation d’une annonce, ajout d’un favori, demande et paiement d’une visite, inscription, publication d’une annonce) ne contiennent ni nom, ni téléphone, ni identifiant.</li>
+  <li><strong>Localisation des données :</strong> Union européenne.</li>
+</ul>
+
+<h2>6. Gérer vos choix</h2>
+<p>Lors de votre première visite, un bandeau « Cookies et mesure d’audience » vous permet d’accepter ou de refuser la mesure d’audience. Les boutons « Refuser » et « Accepter » ont la même importance : refuser est aussi simple qu’accepter, et n’empêche pas d’utiliser l’application.</p>
+<p>Votre choix est conservé 6 mois, puis le bandeau vous est proposé à nouveau. Vous pouvez le modifier à tout moment :</p>
+<ul>
+  <li>depuis votre profil, rubrique « Cookies et mesure d’audience » ;</li>
+  <li>depuis la page de confidentialité de l’application, lien « Modifier mon choix ».</li>
+</ul>
+<div class="note">Si vous retirez votre consentement, la mesure d’audience s’arrête immédiatement, sans qu’il soit nécessaire de recharger la page.</div>
+<p>Vous pouvez aussi effacer les données enregistrées par l’application depuis les réglages de votre navigateur. Dans ce cas, vous serez déconnecté, le code de vérification (OTP) vous sera redemandé à la prochaine connexion, et vos préférences seront réinitialisées.</p>
+
+<h2>7. Contact</h2>
+<div class="table-wrap"><table>
+  <tr><th scope="row">E-mail</th><td><a href="mailto:contact@lerefugetic.com">contact@lerefugetic.com</a></td></tr>
+  <tr><th scope="row">Téléphone</th><td><a href="tel:+2290197313991">+229 01 97 31 39 91</a></td></tr>
+</table></div>
+<p>Vous disposez également du droit d’introduire une réclamation auprès de l’Autorité de Protection des Données Personnelles (APDP) : <a href="mailto:contact@apdp.bj">contact@apdp.bj</a> · <a href="https://www.apdp.bj" rel="noopener">www.apdp.bj</a>.</p>
+
+<p class="meta" style="margin-top:40px">© 2026 LE REFUGE TIC · Tous droits réservés · Plateforme REFUGE</p>
+</main>
+</body>
+</html>

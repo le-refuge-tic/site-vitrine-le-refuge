@@ -109,8 +109,11 @@ export type Project = {
   title: string;
   role: string;
   description: string;
-  url: string;
+  /** Site en ligne (aperçu live). Absent pour une application mobile. */
+  url?: string;
   tags: string[];
+  /** Liens complémentaires (ex. pages légales d'une application). */
+  links?: { label: string; href: string }[];
 };
 
 export const projects: Project[] = [
@@ -129,6 +132,18 @@ export const projects: Project[] = [
       "L'outil d'administration de la plateforme : gestion des annonces, des commerciaux, des utilisateurs, des finances et des visites.",
     url: "https://immo-web-admin-ten.vercel.app/",
     tags: ["React", "TypeScript", "Dashboard"],
+  },
+  {
+    title: "REFUGE — Application mobile Android",
+    role: "Plateforme immobilière · Mobile",
+    description:
+      "L'application Android de la plateforme REFUGE. Ses pages légales sont consultables librement, sans compte.",
+    tags: ["Flutter", "Android", "Immobilier"],
+    links: [
+      { label: "Politique de confidentialité", href: "/refuge/confidentialite" },
+      { label: "Suppression de compte", href: "/refuge/suppression-compte" },
+      { label: "Cookies (application web)", href: "/refuge/cookies" },
+    ],
   },
 ];
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "@phosphor-icons/react";
+import { ArrowUpRight, DeviceMobile } from "@phosphor-icons/react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Reveal } from "@/components/motion/Reveal";
@@ -91,6 +91,15 @@ function LivePreview({ project }: { project: Project }) {
   );
 }
 
+/** Visuel statique pour une application mobile (pas d'aperçu live). */
+function MobilePreview() {
+  return (
+    <div className="flex aspect-[16/10] w-full items-center justify-center rounded-t-2xl border-b border-line bg-gradient-to-br from-cyan-50 to-cyan-100">
+      <DeviceMobile size={72} weight="duotone" className="text-cyan-600" aria-hidden="true" />
+    </div>
+  );
+}
+
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <Reveal
@@ -98,7 +107,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       delay={index * 0.08}
       className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-soft transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lift"
     >
-      <LivePreview project={project} />
+      {project.url ? <LivePreview project={project} /> : <MobilePreview />}
 
       <div className="flex flex-1 flex-col p-6">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-cyan-600">
@@ -122,19 +131,36 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           ))}
         </div>
 
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-navy-600 transition-colors hover:text-cyan-600"
-        >
-          Voir le site
-          <ArrowUpRight
-            size={16}
-            weight="bold"
-            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
-        </a>
+        {project.url && (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-navy-600 transition-colors hover:text-cyan-600"
+          >
+            Voir le site
+            <ArrowUpRight
+              size={16}
+              weight="bold"
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+        )}
+
+        {project.links && (
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+            {project.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-navy-600 transition-colors hover:text-cyan-600"
+              >
+                {link.label}
+                <ArrowUpRight size={16} weight="bold" />
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </Reveal>
   );
@@ -155,7 +181,7 @@ export function Portfolio() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {projects.map((project, i) => (
-            <ProjectCard key={project.url} project={project} index={i} />
+            <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
       </Container>
