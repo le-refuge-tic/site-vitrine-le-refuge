@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ArrowUpRight, DeviceMobile } from "@phosphor-icons/react";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
@@ -91,6 +92,24 @@ function LivePreview({ project }: { project: Project }) {
   );
 }
 
+/**
+ * Capture statique du site (pour les sites qui interdisent l'affichage
+ * en iframe via X-Frame-Options / frame-ancestors).
+ */
+function StaticPreview({ image }: { image: NonNullable<Project["image"]> }) {
+  return (
+    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-2xl border-b border-line bg-cyan-50">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        sizes="(min-width: 768px) 50vw, 100vw"
+        className="object-cover object-top"
+      />
+    </div>
+  );
+}
+
 /** Visuel statique pour une application mobile (pas d'aperçu live). */
 function MobilePreview() {
   return (
@@ -107,7 +126,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       delay={index * 0.08}
       className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-soft transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lift"
     >
-      {project.url ? <LivePreview project={project} /> : <MobilePreview />}
+      {project.image ? (
+        <StaticPreview image={project.image} />
+      ) : project.url ? (
+        <LivePreview project={project} />
+      ) : (
+        <MobilePreview />
+      )}
 
       <div className="flex flex-1 flex-col p-6">
         <p className="text-xs font-medium uppercase tracking-[0.14em] text-cyan-600">

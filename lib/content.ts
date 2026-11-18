@@ -114,6 +114,8 @@ export type Project = {
   tags: string[];
   /** Liens complémentaires (ex. pages légales d'une application). */
   links?: { label: string; href: string }[];
+  /** Capture statique affichée à la place de l'aperçu live (iframe). */
+  image?: { src: string; alt: string };
 };
 
 export const projects: Project[] = [
@@ -124,6 +126,10 @@ export const projects: Project[] = [
       "L'interface publique de la plateforme immobilière REFUGE : recherche de biens, mise en relation et suivi des demandes pour les particuliers.",
     url: "https://user.lerefugetic.com",
     tags: ["React", "Web", "Immobilier"],
+    image: {
+      src: "/realisations/user.png",
+      alt: "Aperçu de l'espace client REFUGE",
+    },
   },
   {
     title: "REFUGE — Dashboard admin",
@@ -132,6 +138,10 @@ export const projects: Project[] = [
       "L'outil d'administration de la plateforme : gestion des annonces, des commerciaux, des utilisateurs, des finances et des visites.",
     url: "https://admin.lerefugetic.com",
     tags: ["React", "TypeScript", "Dashboard"],
+    image: {
+      src: "/realisations/admin.png",
+      alt: "Aperçu de l'écran de connexion du tableau de bord REFUGE",
+    },
   },
   {
     title: "REFUGE — Application mobile Android",
