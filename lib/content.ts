@@ -122,7 +122,7 @@ export const projects: Project[] = [
     role: "Plateforme immobilière · Web",
     description:
       "L'interface publique de la plateforme immobilière REFUGE : recherche de biens, mise en relation et suivi des demandes pour les particuliers.",
-    url: "https://refuge-user-chi.vercel.app/",
+    url: "https://user.lerefugetic.com",
     tags: ["React", "Web", "Immobilier"],
   },
   {
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     role: "Tableau de bord de gestion · Web",
     description:
       "L'outil d'administration de la plateforme : gestion des annonces, des commerciaux, des utilisateurs, des finances et des visites.",
-    url: "https://immo-web-admin-ten.vercel.app/",
+    url: "https://admin.lerefugetic.com",
     tags: ["React", "TypeScript", "Dashboard"],
   },
   {
