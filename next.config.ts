@@ -17,6 +17,14 @@ const nextConfig: NextConfig = {
         source: "/refuge/cookies",
         destination: "/refuge/cookies.html",
       },
+      {
+        source: "/refuge/cgu",
+        destination: "/refuge/cgu.html",
+      },
+      {
+        source: "/refuge/mentions-legales",
+        destination: "/refuge/mentions-legales.html",
+      },
     ];
   },
 };
