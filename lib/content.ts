@@ -150,9 +150,11 @@ export const projects: Project[] = [
       "L'application Android de la plateforme REFUGE. Ses pages légales sont consultables librement, sans compte.",
     tags: ["Flutter", "Android", "Immobilier"],
     links: [
+      { label: "Conditions générales d'utilisation", href: "/refuge/cgu" },
       { label: "Politique de confidentialité", href: "/refuge/confidentialite" },
       { label: "Suppression de compte", href: "/refuge/suppression-compte" },
       { label: "Cookies (application web)", href: "/refuge/cookies" },
+      { label: "Mentions légales", href: "/refuge/mentions-legales" },
     ],
   },
 ];
